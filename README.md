@@ -9,7 +9,7 @@ Contributors:
 
 
 Get Started:
-============
+------------
 
 Download interface.py and a sample AI. Compile the AI and execute interface.py as:
 

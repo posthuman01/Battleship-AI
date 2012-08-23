@@ -16,3 +16,8 @@ Download interface.py and a sample AI. Compile the AI and execute interface.py a
 ```
 ./interface.py ./ai
 ```
+
+Contact Us:
+-----------
+
+Submit issues here or attempt to contact us in #battleship or #battleship_testing on freenode.net

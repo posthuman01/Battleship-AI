@@ -14,6 +14,8 @@
 
 //#include "GameBoard.h"
 
+using namespace std;
+
 class BattleshipAI
 {
 private:
@@ -27,14 +29,15 @@ private:
 
 	unsigned int state;
 
-
-	std::string move();
+	string move();
 
 public:
 	BattleshipAI();
 	//~BattleshipAI();
 
-	std::string handler(std::string input);
+	string handler(string input);
+
+	static vector<string> parse(string);
 };
 
 #include "BattleshipAI.cpp"

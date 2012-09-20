@@ -272,11 +272,8 @@ class msg_read_thread(threading.Thread):
             ReadNoWait(self.out, self.qu)
 
 def main(): 
-<<<<<<< HEAD
     connection.connect(host="irc.freenode.net", port=6667)
-=======
-    connection.connect(host="localhost", port=6969)
->>>>>>> b10ec79f5720bc7b33315b743d01853e27505a38
+
     if(len(sys.argv) > 2):
         connection.register_nick(sys.argv[2])
     else:

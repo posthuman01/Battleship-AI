@@ -7,10 +7,10 @@ import os
 import subprocess
 import re
 import threading
-import irc
-import irc.connection
-import procIO
-import config_manage
+import interface.irc
+import interface.irc.connection
+import interface.procIO
+import interface.config_manage 
 try:
     from Queue import Queue, Empty
 except ImportError:
@@ -22,7 +22,7 @@ def main():
     Section = Config["OVERRIDES"]
     proc = subprocess.Popen(sys.argv[1], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     
-    connection = irc.connection.irc_connection()
+    connection = interface.irc.connection.irc_connection()
     connection.connect(host=Section["host"], port=int(Section["port"]))
     connection.register_nick(Section["nick"])
     connection.register_ident(ident="GHB578645_BOT_IDENT", realname="GHB578645_BOT_REALNAME")
@@ -30,8 +30,8 @@ def main():
     
     qu = Queue()
     
-    server_thread = irc.threads.irc_server_thread(connection, proc)
-    msg_thread = irc.threads.msg_read_thread(qu, proc.stdout)
+    server_thread = interface.irc.threads.irc_server_thread(connection, proc)
+    msg_thread = interface.irc.threads.msg_read_thread(qu, proc.stdout)
 
     server_thread.start()
     msg_thread.start()
@@ -42,7 +42,7 @@ def main():
         except Empty:
             pass
         else:
-            msg = irc.message.irc_client_message(strang=line)
+            msg = interface.irc.message.irc_client_message(strang=line)
             connection.send_message(msg)
     print "/main"
     return 0

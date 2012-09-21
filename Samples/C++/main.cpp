@@ -12,13 +12,15 @@
 
 #include "BattleshipAI.h"
 
-std::vector<std::string> parse(std::string);
+using namespace std;
+
+vector<string> parse(string);
 
 int main(int argc, char* argv[]){
-	std::string input;
-	std::vector<std::string> msgs;
-	std::string output;
-	std::ofstream log("log.txt");
+	string input;
+	vector<string> msgs;
+	string output;
+	ofstream log("log.txt");
 
 	BattleshipAI ai;	// Create an AI instance.
 
@@ -27,22 +29,21 @@ int main(int argc, char* argv[]){
 		while(1)
 		{
 			input = "";
-			std::getline(std::cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
-			log << time(NULL) << " : [in] " << input << std::endl;	// Log all input.
-			msgs = parse(input);
+			getline(cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
+			log << time(NULL) << " : [in] " << input << endl;	// Log all input.
 			
-			output = ai.handler(msgs[3]);	// Send the input to your AI class.
+			output = ai.handler(input);	// Send the input to your AI class.
 
-			if(output != "")	// Don't send anything to the interface if there is no output from the AI.
-			{
-				std::cout << "PRIVMSG:" << msgs[2] << ":" << output << std::endl;
-			}
-
-			log << time(NULL) << " : [out] " << output << std::endl;	// Log output with timestamp.
+			log << time(NULL) << " : [out] " << output << endl;	// Log output with timestamp.
 
 			if(output == "[end]")
 			{
 				break;
+			} 
+
+			else if(output != "") 
+			{
+				cout << output << endl;
 			}
 		}
 	}
@@ -51,11 +52,11 @@ int main(int argc, char* argv[]){
 		while(1)
 		{
 			input = "";
-			std::getline(std::cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
+			getline(cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
 			
-			output = ai.handle(input);	// Send the input to your AI class.
+			output = ai.handler(input);	// Send the input to your AI class.
 
-			std::cout << output << std::endl;
+			cout << output << endl;
 
 			if(output == "[end]")
 			{
@@ -65,31 +66,9 @@ int main(int argc, char* argv[]){
 	}
 	else 
 	{
-		std::cout << "Command line arguments invalid!\n" << std::endl;
+		cout << "Command line arguments invalid!\n" << endl;
 	}
 
 	log.close();
 	return 0;
-}
-
-
-std::vector<std::string> parse(std::string in)
-{
-	std::string sec = "";
-	std::vector<std::string> ret;
-	int l = in.length();
-	for(int i = 0; i < l; ++i)
-	{
-		if(in[i] == ':')
-		{
-			ret.push_back(sec);
-			sec = "";
-		}
-		else
-		{
-			sec += in[i];
-		}
-	}
-	ret.push_back(sec);
-	return ret;
 }

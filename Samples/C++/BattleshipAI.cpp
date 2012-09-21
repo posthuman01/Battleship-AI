@@ -16,22 +16,25 @@ BattleshipAI::BattleshipAI()
 	state = 0;
 }
 
-std::string BattleshipAI::handler(std::string in)
+string BattleshipAI::handler(string in)
 {
-	std::string output = "";
+	vector<string> msg = parse(in);
+	// Typical in, MSGTYPE:sender:recipient:message
+
+	string output = "";
 
 	switch(state)
 	{
 		case 0:
-			if(in == "[start]")
+			if(msg[3] == "[start]")
 			{
 				state = 1;
-				output = move();
+				output = "PRIVMSG:" + msg[2] + ":" + move();
 			}
 			break;
 
 		case 1:
-			output = move();
+			output = "PRIVMSG:" + msg[2] + ":" + move();
 			break;
 	}
 
@@ -39,7 +42,7 @@ std::string BattleshipAI::handler(std::string in)
 }
 
 
-std::string BattleshipAI::move()
+string BattleshipAI::move()
 {
 	if(cur_x == x)
 	{
@@ -56,51 +59,29 @@ std::string BattleshipAI::move()
 			++cur_y;
 		}
 	}
-	std::stringstream stream;
+	stringstream stream;
 	stream << cur_x++ << "," << cur_y;
 	return stream.str();
 }
 
 
-
-/*
-
-struct recv_message{
-	char* msg_type;
-	char* sender;
-	char* recipient;
-	char* message;
-};
-
-recv_message parse_message(char* message){
-	recv_message recv = {message,NULL,NULL,NULL};
-	char* pC = message;
-	char** pFields[] = {&recv.msg_type, &recv.sender, &recv.recipient, &recv.message};
-	if(message == NULL)
-		return recv;
-	for(int i=1; i<4; ++i){
-		while(*pC != ':' && *pC != '\0')
-			++pC;		
-		if(*pC == ':'){
-			*pC = '\0';
-			++pC;
-			*pFields[i] = pC;
-		}else{
-			return recv;
+vector<string> BattleshipAI::parse(string in)
+{
+	string sec = "";
+	vector<string> ret;
+	int l = in.length();
+	for(int i = 0; i < l; ++i)
+	{
+		if(in[i] == ':')
+		{
+			ret.push_back(sec);
+			sec = "";
+		}
+		else
+		{
+			sec += in[i];
 		}
 	}
-	//*pFields[3] = pC;
-	return recv;
+	ret.push_back(sec);
+	return ret;
 }
-
-recv_message parse_message_c(const char* message){
-	if(message == NULL)
-		return (recv_message){NULL,NULL,NULL,NULL};
-	char* buffer = (char*)malloc(strlen(message));
-	if(buffer == NULL || message == NULL)
-		return (recv_message){NULL,NULL,NULL,NULL};
-	strcpy(buffer, message);
-	return parse_message(buffer);
-}
-
-*/

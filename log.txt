@@ -1,8 +1,0 @@
-1348263542 : [in] MODE:hubbard.freenode.net:#battleship_testing:
-1348263542 : [out] PRIVMSG:#battleship_testing:!ref
-
-1348263542 : [in] 353:hubbard.freenode.net:BSBots:@BSBots
-1348263542 : [out] 
-1348263542 : [in] 366:hubbard.freenode.net:BSBots:End of /NAMES list.
-1348263542 : [out] 
-1348263542 : [in] 

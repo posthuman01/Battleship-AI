@@ -11,7 +11,7 @@ Contributors:
 Get Started:
 ------------
 
-Clone (optional fork) repo to your local machine. Next, edit your interface/config.cfg file to include settings for your bot.
+Clone (optional fork) repo to your local machine. Next, edit your Interface/config.cfg file to include settings for your bot.
 
 You may override any of the default settings you want by placing them in the OVERRIDES section of the config file, an example config is:
 

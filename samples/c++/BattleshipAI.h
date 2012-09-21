@@ -23,6 +23,7 @@ private:
 	//GameBoard my_field;
 
 	enum State {
+		Config,
 		Idle,
 		Prep,
 		Search,
@@ -30,6 +31,10 @@ private:
 	};
 
 	State state;
+
+	string channel;
+	string referee;
+	string nick;
 
 
 	string move();

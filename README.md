@@ -12,8 +12,11 @@ Get Started:
 ------------
 
 Download interface.py, procIO.py, the irc folder, the config_manage folder, and a sample AI. 
+
 Then copy the contents of example_config.cfg to ~/.battleshipAI (An alternative would be to make ~/.battleshipAI a link to example_config.cfg). 
+
 Optionally you may override any of the default settings you want by placing them in the OVERRIDES section of the config file, an example config is:
+
 ```
 [DEFAULT]
 host=irc.freenode.net

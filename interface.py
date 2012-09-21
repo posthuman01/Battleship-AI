@@ -18,7 +18,7 @@ except ImportError:
 
 def main(): 
     Config = config_manage.ConfigManager()
-    Config.readfp(open(os.path.expanduser("~/.battleshipAI")))
+    Config.readfp(open(".battleshipAI"))
     Section = Config["OVERRIDES"]
     proc = subprocess.Popen(sys.argv[1], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     

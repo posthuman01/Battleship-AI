@@ -11,11 +11,26 @@ Contributors:
 Get Started:
 ------------
 
-Download interface.py and a sample AI. Compile the AI and execute interface.py as:
+Download interface.py and a sample AI. Then copy the contents of example_config.cfg to ~/.battleshipAI. Override any of the default settings you want by placin them in the OVERRIDES section, an example config is:
+```
+[DEFAULT]
+host=irc.freenode.net
+port=6667
+nick=SEX_ROBOT
+channel=#battleship_testing
+
+[OVERRIDES]
+nick=your_nickname
+channel=#alternat_channel
+```
+
+ Then compile the AI and execute interface.py as:
 
 ```
 ./interface.py ./ai
 ```
+
+
 
 Contact Us:
 -----------

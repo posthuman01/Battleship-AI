@@ -20,7 +20,7 @@ string BattleshipAI::handler(string raw_in)
 {
 	vector<string> msg = parse(raw_in);
 	// Typical in, MSGTYPE:sender:recipient:message
-	if(msg[0] == "NOTICE")
+	if(msg[0] != "PRIVMSG" || msg.size() != 4)
 	{
 		return "";
 	}
@@ -45,7 +45,7 @@ string BattleshipAI::handler(string raw_in)
 			{
 				output = "PRIVMSG:" + recipient + ":!ref\n";
 				referee = " ";
-			} 
+			}
 			else if (referee == " ")
 			{
 				if(recipient != channel)
@@ -54,10 +54,12 @@ string BattleshipAI::handler(string raw_in)
 					referee = sender;
 				}
 			}
-			if(channel== "" && referee == "" && nick == "")
+			if(channel != "" && referee != "" && nick != "")
 			{
 				state = Prep;
+				output = "PRIVMSG:" + channel + ":Ready to test!\n";
 			}
+
 			break;
 
 		case Idle:

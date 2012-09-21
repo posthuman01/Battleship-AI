@@ -24,52 +24,27 @@ int main(int argc, char* argv[]){
 
 	BattleshipAI ai;	// Create an AI instance.
 
-	if(argc == 1)	// Check to see if there is a command line flag.
+	while(1)
 	{
-		while(1)
+		input = "";
+		getline(cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
+		log << time(NULL) << " : [in] " << input << endl;	// Log all input.
+		
+		output = ai.handler(input);	// Send the input to your AI class.
+
+		log << time(NULL) << " : [out] " << output << endl;	// Log output with timestamp.
+
+		if(output == "[end]")
 		{
-			input = "";
-			getline(cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
-			log << time(NULL) << " : [in] " << input << endl;	// Log all input.
-			
-			output = ai.handler(input);	// Send the input to your AI class.
+			break;
+		} 
 
-			log << time(NULL) << " : [out] " << output << endl;	// Log output with timestamp.
-
-			if(output == "[end]")
-			{
-				break;
-			} 
-
-			else if(output != "") 
-			{
-				cout << output << endl;
-			}
+		else if(output != "") 
+		{
+			cout << output;
 		}
 	}
-	else if(strcmp(argv[1], "--test") == 0)	// Expect only message as input. No sender, recipient, etc.
-	{
-		while(1)
-		{
-			input = "";
-			getline(cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
-			
-			input = "PRIVMSG:sender:recipient:" + input;
 
-			output = ai.handler(input);	// Send the input to your AI class.
-
-			cout << output << endl;
-
-			if(output == "[end]")
-			{
-				break;
-			}
-		}
-	}
-	else 
-	{
-		cout << "Command line arguments invalid!\n" << endl;
-	}
 
 	log.close();
 	return 0;

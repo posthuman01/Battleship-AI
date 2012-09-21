@@ -11,11 +11,9 @@ Contributors:
 Get Started:
 ------------
 
-Download interface.py, procIO.py, the irc folder, the config_manage folder, and a sample AI. 
+Clone (optional fork) repo to your local machine. Next, edit your Interface/config.cfg file to include settings for your bot.
 
-Then copy the contents of example_config.cfg to ~/.battleshipAI (An alternative would be to make ~/.battleshipAI a link to example_config.cfg). 
-
-Optionally you may override any of the default settings you want by placing them in the OVERRIDES section of the config file, an example config is:
+You may override any of the default settings you want by placing them in the OVERRIDES section of the config file, an example config is:
 
 ```
 [DEFAULT]
@@ -34,6 +32,8 @@ channel=#alternat_channel
 ```
 ./interface.py ./ai
 ```
+
+An example makefile is included so by running 'make' you will compile the Sample C++ ai.
 
 
 

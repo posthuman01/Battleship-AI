@@ -1,3 +1,3 @@
 all:
-	g++ Samples/C++/main.cpp -o ai
+	g++ samples/c++/main.cpp -o ai
 

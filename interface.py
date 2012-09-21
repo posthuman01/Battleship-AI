@@ -11,13 +11,14 @@ import interface.irc
 import interface.irc.connection
 import interface.procIO
 import interface.config_manage 
+#from interface import irc, procIO, config_manage
 try:
     from Queue import Queue, Empty
 except ImportError:
     from queue import Queue, Empty  # python 3.x
 
 def main(): 
-    Config = config_manage.ConfigManager()
+    Config = interface.config_manage.ConfigManager()
     Config.readfp(open("interface/config.cfg"))
     Section = Config["OVERRIDES"]
     proc = subprocess.Popen(sys.argv[1], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

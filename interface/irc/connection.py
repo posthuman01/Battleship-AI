@@ -7,9 +7,7 @@ import os
 import subprocess
 import re
 import threading
-import irc
-import irc.threads
-from irc.message import irc_client_message, irc_server_message
+from message import irc_client_message, irc_server_message
 try:
     from Queue import Queue, Empty
 except ImportError:

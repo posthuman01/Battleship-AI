@@ -7,7 +7,6 @@ import os
 import subprocess
 import re
 import threading
-import irc
 try:
     from Queue import Queue, Empty
 except ImportError:

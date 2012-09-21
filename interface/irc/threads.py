@@ -7,9 +7,9 @@ import os
 import subprocess
 import re
 import threading
-import irc
-import irc.message
-import procIO
+import message
+import interface
+from interface import procIO
 try:
     from Queue import Queue, Empty
 except ImportError:
@@ -29,7 +29,7 @@ class irc_server_thread(threading.Thread):
         self.Dexecuting = True
         while True:
             line = self.connection.get_next_line()
-            msg = irc.message.irc_server_message(strang = line)
+            msg = message.irc_server_message(strang = line)
             if(self.handle_server_message(msg) == False):
                 self.Dexecuting = False
                 print "/Server thread"

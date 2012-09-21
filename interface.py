@@ -11,6 +11,7 @@ import interface.irc
 import interface.irc.connection
 import interface.procIO
 import interface.config_manage 
+import interface.irc.threads
 #from interface import irc, procIO, config_manage
 try:
     from Queue import Queue, Empty

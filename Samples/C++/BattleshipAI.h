@@ -12,22 +12,25 @@
 #include <sstream>
 #include <vector>
 
-//#include "GameBoard.h"
+#include "GameBoard.h"
 
 using namespace std;
 
 class BattleshipAI
 {
 private:
-	// GameBoard op_field;
-	// GameBoard my_field;
-	int x;
-	int y;
+	//GameBoard op_field;
+	//GameBoard my_field;
 
-	int cur_x;
-	int cur_y;
+	enum State {
+		Idle,
+		Prep,
+		Search,
+		Engage
+	};
 
-	unsigned int state;
+	State state;
+
 
 	string move();
 

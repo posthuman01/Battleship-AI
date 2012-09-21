@@ -54,6 +54,8 @@ int main(int argc, char* argv[]){
 			input = "";
 			getline(cin, input, '\n');	// Grab the next line of input from STDIN. (Ie. interface.py)
 			
+			input = "PRIVMSG:sender:recipient:" + input;
+
 			output = ai.handler(input);	// Send the input to your AI class.
 
 			cout << output << endl;

@@ -9,31 +9,32 @@
 
 BattleshipAI::BattleshipAI()
 {
-	x = 10;
-	y = 10;
-	cur_x = 0;
-	cur_y = 0;
-	state = 0;
+	state = Idle;
 }
 
-string BattleshipAI::handler(string in)
+string BattleshipAI::handler(string raw_in)
 {
-	vector<string> msg = parse(in);
+	vector<string> msg = parse(raw_in);
 	// Typical in, MSGTYPE:sender:recipient:message
+	string sender = msg[1];
+	string recipient = msg[2];
+	string input = msg[3];
 
 	string output = "";
 
 	switch(state)
 	{
-		case 0:
-			if(msg[3] == "[start]")
+		case Idle:
+			if(input == "[start]")
 			{
-				state = 1;
-				output = "PRIVMSG:" + msg[2] + ":" + move();
+				state = Prep;
+				output = "PRIVMSG:" + recipient + ":!bs-test\n";
 			}
 			break;
 
-		case 1:
+		case Prep:
+			//if(recipient ==  )
+			//startNewGame();
 			output = "PRIVMSG:" + msg[2] + ":" + move();
 			break;
 	}
@@ -44,24 +45,8 @@ string BattleshipAI::handler(string in)
 
 string BattleshipAI::move()
 {
-	if(cur_x == x)
-	{
-		if(cur_y == y)
-		{
-			state = 0;
-			cur_y = 0;
-			cur_x = 0;
-			return "[end]";
-		}
-		else
-		{
-			cur_x = 0;
-			++cur_y;
-		}
-	}
-	stringstream stream;
-	stream << cur_x++ << "," << cur_y;
-	return stream.str();
+
+	return "";
 }
 
 

@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
 	string input;
 	vector<string> msgs;
 	string output;
-	ofstream log("log.txt");
+	ofstream log( (string(argv[0]) + ".log").c_str() );
 
 	BattleshipAI ai;	// Create an AI instance.
 

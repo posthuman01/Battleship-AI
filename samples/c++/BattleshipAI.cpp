@@ -34,19 +34,19 @@ string BattleshipAI::handler(string raw_in)
 	switch(state)
 	{
 		case Config:
-			if(channel.compare("") == 0)
+			if(channel == "")
 			{
-				if(recipient.compare(0,1,"#") == 0)
+				if(recipient.compare(0,1,"#") == 0)	// Compare the first char of recipient to determine if it's the channel name.
 				{
 					channel = recipient;
 				}
 			}
-			if(referee.compare("") == 0)
+			if(referee == "")
 			{
 				output = "PRIVMSG:" + recipient + ":!ref\n";
 				referee = " ";
 			} 
-			else if (referee.compare(" ") == 0)
+			else if (referee == " ")
 			{
 				if(recipient != channel)
 				{
@@ -54,8 +54,10 @@ string BattleshipAI::handler(string raw_in)
 					referee = sender;
 				}
 			}
-			if(!channel.compare("") && !referee.compare("") && !nick.compare(""))
+			if(channel== "" && referee == "" && nick == "")
+			{
 				state = Prep;
+			}
 			break;
 
 		case Idle:

@@ -4,4 +4,4 @@ ai
 *.o
 *.so
 *~
-
+interface/config.cfg
